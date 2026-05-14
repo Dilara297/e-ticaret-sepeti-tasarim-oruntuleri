@@ -84,3 +84,41 @@ karmaşıktı. Facade ile tüm bu işlemler tek bir sınıftan yönetiliyor.
 yonetici = SiparisYoneticisi()
 yonetici.siparis_ozeti("premium", urunler, hediye_paketi=True)
 ```
+
+---
+
+## Faz 3 — Strategy
+
+### Nerede Uygulandı?
+`src/strateji.py` — `IndirimStratejisi` ve alt sınıfları
+
+### Neden Bu Örüntü?
+İndirim algoritmaları if/else ile Sepet sınıfına gömülüydü.
+Strategy ile her algoritma kendi sınıfında izole edildi ve
+runtime'da değiştirilebilir hale geldi.
+
+### OCP Örneği
+Yeni indirim kuralı eklemek için sadece yeni bir strateji sınıfı
+yazılıyor, mevcut hiçbir kod değişmiyor.
+
+### Ne Kazandık?
+- İndirimler birleştirilebilir (KampanyaStratejisi)
+- Runtime'da strateji değiştirilebilir
+- Mevcut kod değişmeden yeni kural eklenebilir
+
+---
+
+## Faz 3 — Observer
+
+### Nerede Uygulandı?
+`src/observer.py` — `GozlemlenebilirSepet`, `SepetGozlemcisi`
+
+### Neden Bu Örüntü?
+Sepette değişiklik olduğunda log, bildirim, stok gibi sistemlerin
+haberdar olması gerekiyordu. Observer ile bu bağımlılık gevşek
+hale getirildi.
+
+### Ne Kazandık?
+- Sepet sınıfı gözlemcileri tanımıyor, sadece haber veriyor
+- Yeni gözlemci eklemek için mevcut kodu değiştirmek gerekmiyor
+- Gözlemciler runtime'da eklenip çıkarılabiliyor
