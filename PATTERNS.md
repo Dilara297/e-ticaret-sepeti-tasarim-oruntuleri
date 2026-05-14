@@ -32,3 +32,55 @@ elif self.kullanici_turu == "premium":
 ```python
 sepet = SepetFabrikasi.sepet_olustur("premium")
 ```
+
+---
+
+## Faz 2 — Decorator
+
+### Nerede Uygulandı?
+`src/dekorator.py` — `HediyePaketiDekorator`, `KargoDekorator`
+
+### Neden Bu Örüntü?
+Sepete hediye paketi ve kargo ücreti eklemek için mevcut sınıfları
+değiştirmek istemedik. Decorator ile sepet nesnesini sarmalayarak
+yeni davranış ekledik. Dekoratörler zincirlenebilir olduğu için
+ikisi aynı anda uygulanabiliyor.
+
+### Ne Kazandık?
+- Mevcut sepet kodu hiç değişmedi
+- Yeni özellik eklemek için sadece yeni bir dekoratör sınıfı yazılıyor
+- Özellikler isteğe bağlı ve birleştirilebilir
+
+### Önce / Sonra
+**Önce:** Hediye paketi eklemek için Sepet sınıfını değiştirmek gerekiyordu
+
+**Sonra:**
+```python
+sepet = KargoDekorator(sepet)
+sepet = HediyePaketiDekorator(sepet)
+```
+
+---
+
+## Faz 2 — Facade
+
+### Nerede Uygulandı?
+`src/facade.py` — `SiparisYoneticisi`
+
+### Neden Bu Örüntü?
+Fabrika, dekoratör gibi birden fazla sınıfla ayrı ayrı çalışmak
+karmaşıktı. Facade ile tüm bu işlemler tek bir sınıftan yönetiliyor.
+
+### Ne Kazandık?
+- Kullanıcı sadece SiparisYoneticisi ile konuşuyor
+- Arka planda hangi sınıfların çalıştığını bilmesi gerekmiyor
+- Yeni bir özellik eklendiğinde sadece Facade güncelleniyor
+
+### Önce / Sonra
+**Önce:** Her sınıfı ayrı ayrı oluşturup bağlamak gerekiyordu
+
+**Sonra:**
+```python
+yonetici = SiparisYoneticisi()
+yonetici.siparis_ozeti("premium", urunler, hediye_paketi=True)
+```
