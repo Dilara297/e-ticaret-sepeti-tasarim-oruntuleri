@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, phase-1, phase-2, phase-3 ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Python kur
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Dosyalari kontrol et
+        run: |
+          python src/fabrika.py
+          python src/dekorator.py
+          python src/strateji.py
