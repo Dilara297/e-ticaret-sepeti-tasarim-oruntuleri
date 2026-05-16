@@ -16,18 +16,7 @@ bir alandır. Bu projede başlangıçta kötü tasarlanmış bir sepet sistemi,
 | Faz 3 | Strategy|`src/strateji.py` | İndirim algoritmalarını değiştirilebilir yapmak |
 | Faz 3 | Observer| `src/observer.py`| Sepet olaylarını ilgili sistemlere bildirmek |
 
-##  Mimari Diyagram
-Kullanici
-↓
-SiparisYoneticisi (Facade)
-↓
-SepetFabrikasi (Factory Method)
-↓
-GozlemlenebilirSepet (Observer)
-↓
-StratejiliSepet (Strategy)
-↓
-KargoDekorator → HediyePaketiDekorator (Decorator)
+![Mimari Diyagram](docs/diagrams/mimari-diyagram.png)
 
 ##  Nasıl Çalıştırılır?
 
